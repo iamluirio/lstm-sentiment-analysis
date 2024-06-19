@@ -9,6 +9,7 @@ The IMDb dataset is often used in data analysis and machine learning projects du
 <div align="center">
 <img src="https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/e917b27e-744b-4dba-88f4-a312caf7ab0f" />
 </div>
+<div style="margin-bottom: 20px;">‎ </div>
 
 Aim of the project is:
 - Dataset:
