@@ -9,3 +9,14 @@ The IMDb dataset is often used in data analysis and machine learning projects du
 <div align="center">
 <img src="https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/e917b27e-744b-4dba-88f4-a312caf7ab0f" />
 </div>
+
+Aim of the project is:
+- Dataset:
+  - Exploration and preparation of the dataset to better understand its structure and label distributions.
+  - Split of the dataset into training sets and test sets to evaluate the model performance.
+  - Data preprocessing: cleaning reviews by removing punctuation, stop words, and other unwanted characters. Tokenizing reviews by breaking them down into  individual words or subsequences of words (e.g., n-grams).
+
+- LSTM model creation:
+  - Definition of the LSTM model architecture.
+  - Configuration of the model input to accept variable-length sequences (tokenized reviews).
+  - Set of the model output as a single unit with an activation function appropriate for binary classification (for example, the sigmoid activation function).
