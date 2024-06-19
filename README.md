@@ -12,12 +12,27 @@ The IMDb dataset is often used in data analysis and machine learning projects du
 <div style="margin-bottom: 20px;">‎ </div>
 
 Aim of the project is:
-- Dataset:
+- **Dataset**
   - Exploration and preparation of the dataset to better understand its structure and label distributions.
   - Split of the dataset into training sets and test sets to evaluate the model performance.
   - Data preprocessing: cleaning reviews by removing punctuation, stop words, and other unwanted characters. Tokenizing reviews by breaking them down into  individual words or subsequences of words (e.g., n-grams).
 
-- LSTM model creation:
+- **LSTM Model Creation**
   - Definition of the LSTM model architecture.
   - Configuration of the model input to accept variable-length sequences (tokenized reviews).
   - Set of the model output as a single unit with an activation function appropriate for binary classification (for example, the sigmoid activation function).
+
+- **Model Training**
+  - Model inputs and outputs preparation using the training set.
+  - Defininition of a loss function suitable for binary classification.
+  - Optimizer usage (Adam or RMSprop) to update the model weights during training.
+  - Model training for a defined number of epochs, monitoring evaluation metrics such as accuracy.
+ 
+- **Model Evaluation**
+  - Evaluation of model performance using test set.
+  - Calculation of metrics such as accuracy, precision, recall and F1-score to evaluate model performance on Sentiment Analysis.
+
+- **Model optimization**
+  - Exploration of different model variations, such as increasing the number of layers, using regularization techniques (dropout), or using more advanced neural network structures.
+  - Model hyperparameters modification, such as learning rate or word embedding size, to optimize performance.
+  - Cross-validation techniques esage or best-fit hyperparameter search to find the best model configuration.
