@@ -40,10 +40,11 @@ Aim of the project is:
 ## Dataset
 IMDB dataset with 50,000 movie reviews for NLP and text analytics. This is a binary sentiment classification dataset, containing substantially more data than the previous benchmark datasets. A set of 25,000 highly polar movie reviews is provided for training and 25,000 for testing. Goal: Predict the number of positive and negative reviews using classification and/or deep learning algorithms.
 
-| Review                                                                                                                                                                                                                                                                                          | Sentiment |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| One of the other reviewers has mentioned that after watching just 1 Oz episode you'll be hooked. The...                                                                                                                                                                                          | Positive  |
-| A wonderful little production. <br /><br />The filming technique is very unassuming- very old-time-B...                                                                                                                                                                                          | Positive  |
-| I thought this was a wonderful way to spend time on a too hot summer weekend, sitting in the air con...                                                                                                                                                                                          | Positive  |
-| Basically there's a family where a little boy (Jake) thinks there's a zombie in his closet & his par...                                                                                                                                                                                          | Negative  |
+| Review                                                                                                                                                                  | Sentiment |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| One of the other reviewers has mentioned that after watching just 1 Oz episode you'll be hooked. The...                                                                  | Positive  |
+| A wonderful little production. <br /><br />The filming technique is very unassuming- very old-time-B...                                                                  | Positive  |
+| I thought this was a wonderful way to spend time on a too hot summer weekend, sitting in the air con...                                                                  | Positive  |
+| Basically there's a family where a little boy (Jake) thinks there's a zombie in his closet & his par...                                                                  | Negative  |
+
 
