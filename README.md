@@ -331,3 +331,12 @@ Best Model based on F1-Score: model_111 with F1-Score: 0.8716196426828078
 Best Model based on Recall: model_26 with Recall: 1.0
 Best Model based on Loss: model_112 with Loss: 0.34404894709587097
 ```
+
+We use nested loops to iterate over all combinations of the defined hyperparameters. For each combination of hyperparameters, we constructs a new Sequential LSTM model with the current set of hyperparameters. We compile the model using the Adam optimizer and binary cross-entropy loss, and we define a model checkpoint callback to save the best model based on validation accuracy.
+
+Then, we proceed training the model on the training data, validating on the validation data, and evaluating the trained model on the test set to get the loss and accuracy.
+
+The final stemp is the evaluation: we evaluate the model’s performance on the test set predicting labels for the test set and calculates F1-score and recall. We compare the current model's performance with previously recorded best metrics and updates the best model if the current model performs better.
+
+After iterating through all hyperparameter combinations, we finally print the best models based on accuracy, F1-score, recall, and loss.
+
