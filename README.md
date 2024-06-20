@@ -216,140 +216,61 @@ learning_rates = [0.001, 0.01, 0.1]
 epochs = [5, 10]
 batch_sizes = [64, 128]
 activation_functions = ['sigmoid', 'relu', 'tanh']
+```
 
-# Counter for model names
-model_counter = 1
-
-# Initialize variables for best models
-best_accuracy = 0
-best_accuracy_model_name = ""
-best_f1_score = 0
-best_f1_score_model_name = ""
-best_recall = 0
-best_recall_model_name = ""
-best_loss = float('inf')
-best_loss_model_name = ""
-
-# Iterate over the different combinations of hyperparameters
-for embed_dim in EMBED_DIM:
-    for lstm_out in LSTM_OUT:
-        for lr in learning_rates:
-            for num_epochs in epochs:
-                for batch_size in batch_sizes:
-                    for activation in activation_functions:
-
-                        # Clear session and reset graph
-                        tf.keras.backend.clear_session()
-
-                        # Create the model
-                        model = Sequential()
-                        model.add(Embedding(total_words, embed_dim, input_length=max_length))
-                        model.add(LSTM(lstm_out))
-                        model.add(Dense(1, activation=activation))
-                        model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
-
-                        # Define model name
-                        model_name = f'model_{model_counter}'
+```python
+# Create the model
+model = Sequential()
+model.add(Embedding(total_words, embed_dim, input_length=max_length))
+model.add(LSTM(lstm_out))
+model.add(Dense(1, activation=activation))
+model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
 ```
 
 Then, we proceed training the model on the training data, validating on the validation data, and evaluating the trained model on the test set to get the loss and accuracy. 
 
 ```python
+# Fit the model with the specified hyperparameters
+model.fit(x_train, y_train, batch_size=batch_size, epochs=num_epochs, callbacks=[checkpoint], validation_data=(x_val, y_val))
 
-                        # Define the checkpoint callback to save the best model
-                        checkpoint = ModelCheckpoint(f'models/firstModel/{model_name}.h5',
-                                                     monitor='val_accuracy',
-                                                     save_best_only=True,
-                                                     verbose=1,
-                                                     mode='max')
+# Increment the model counter
+model_counter += 1 
 
-                        # Fit the model with the specified hyperparameters
-                        model.fit(x_train, y_train, batch_size=batch_size, epochs=num_epochs, callbacks=[checkpoint], validation_data=(x_val, y_val))
-
-                        # Increment the model counter
-                        model_counter += 1 
-
-                        # Evaluate the model on the test set
-                        loss, accuracy = model.evaluate(x_test, y_test)
-                        print(f'Model {model_name}: Test Loss: {loss}, Test Accuracy: {accuracy}\n')
+# Evaluate the model on the test set
+loss, accuracy = model.evaluate(x_test, y_test)
 ```
 
 The final step is the evaluation: we evaluate the model’s performance on the test set predicting labels for the test set and calculates F1-score and recall. We compare the current model's performance with previously recorded best metrics and updates the best model if the current model performs better.
 
 ```python
-                        # Check if the current model has better accuracy than the previous best accuracy model
-                        if accuracy > best_accuracy:
-                            best_accuracy = accuracy
-                            best_accuracy_model_name = model_name
+# Check if the current model has better accuracy than the previous best accuracy model
+if accuracy > best_accuracy:
+  best_accuracy = accuracy
+  best_accuracy_model_name = model_name
 
-                        # Calculate F1-score and recall for the current model
-                        predictions = model.predict(x_test)
-                        predicted_labels = [1 if prediction >= 0.5 else 0 for prediction in predictions]
-                        f1 = f1_score(y_test, predicted_labels)
-                        recall = recall_score(y_test, predicted_labels)
+# Calculate F1-score and recall for the current model
+predictions = model.predict(x_test)
+predicted_labels = [1 if prediction >= 0.5 else 0 for prediction in predictions]
+f1 = f1_score(y_test, predicted_labels)
+recall = recall_score(y_test, predicted_labels)
 
-                        # Check if the current model has better F1-score than the previous best F1-score model
-                        if f1 > best_f1_score:
-                            best_f1_score = f1
-                            best_f1_score_model_name = model_name
+# Check if the current model has better F1-score than the previous best F1-score model
+if f1 > best_f1_score:
+  best_f1_score = f1
+  best_f1_score_model_name = model_name
 
-                        # Check if the current model has better recall than the previous best recall model
-                        if recall > best_recall:
-                            best_recall = recall
-                            best_recall_model_name = model_name
+# Check if the current model has better recall than the previous best recall model
+if recall > best_recall:
+  best_recall = recall
+  best_recall_model_name = model_name
 
-                        # Check if the current model has better loss than the previous best loss model
-                        if loss < best_loss:
-                            best_loss = loss
-                            best_loss_model_name = model_name
-```
-
-
-```python
-# Print the best models based on different metrics
-print("========================================================================================")
-print(f'Best Model based on Accuracy: {best_accuracy_model_name} with Accuracy: {best_accuracy}')
-print(f'Best Model based on F1-Score: {best_f1_score_model_name} with F1-Score: {best_f1_score}')
-print(f'Best Model based on Recall: {best_recall_model_name} with Recall: {best_recall}')
-print(f'Best Model based on Loss: {best_loss_model_name} with Loss: {best_loss}')
+# Check if the current model has better loss than the previous best loss model
+if loss < best_loss:
+  best_loss = loss
+  best_loss_model_name = model_name
 ```
 
 After iterating through all hyperparameter combinations, we finally print the best models based on accuracy, F1-score, recall, and loss.
-
-```
-Epoch 1/5
-498/500 [============================>.] - ETA: 0s - loss: 0.6617 - accuracy: 0.5922
-Epoch 1: val_accuracy improved from -inf to 0.67612, saving model to models/firstModel/model_1.h5
-500/500 [==============================] - 13s 23ms/step - loss: 0.6616 - accuracy: 0.5923 - val_loss: 0.6231 - val_accuracy: 0.6761
-Epoch 2/5
-498/500 [============================>.] - ETA: 0s - loss: 0.5916 - accuracy: 0.6990
-Epoch 2: val_accuracy did not improve from 0.67612
-500/500 [==============================] - 11s 23ms/step - loss: 0.5920 - accuracy: 0.6981 - val_loss: 0.6533 - val_accuracy: 0.5941
-Epoch 3/5
-498/500 [============================>.] - ETA: 0s - loss: 0.5741 - accuracy: 0.7019
-Epoch 3: val_accuracy improved from 0.67612 to 0.78625, saving model to models/firstModel/model_1.h5
-500/500 [==============================] - 11s 22ms/step - loss: 0.5735 - accuracy: 0.7026 - val_loss: 0.5040 - val_accuracy: 0.7862
-Epoch 4/5
-500/500 [==============================] - ETA: 0s - loss: 0.5912 - accuracy: 0.7190
-Epoch 4: val_accuracy improved from 0.78625 to 0.79862, saving model to models/firstModel/model_1.h5
-500/500 [==============================] - 11s 22ms/step - loss: 0.5912 - accuracy: 0.7190 - val_loss: 0.4876 - val_accuracy: 0.7986
-Epoch 5/5
-498/500 [============================>.] - ETA: 0s - loss: 0.3114 - accuracy: 0.8874
-Epoch 5: val_accuracy improved from 0.79862 to 0.84438, saving model to models/firstModel/model_1.h5
-500/500 [==============================] - 11s 22ms/step - loss: 0.3114 - accuracy: 0.8873 - val_loss: 0.3743 - val_accuracy: 0.8444
-313/313 [==============================] - 3s 6ms/step - loss: 0.3782 - accuracy: 0.8453
-Model model_1: Test Loss: 0.378179132938385, Test Accuracy: 0.845300018787384
-
-313/313 [==============================] - 2s 5ms/step
-Epoch 1/5
-...
-
-...
-Best Model based on Accuracy: model_78 with Accuracy: 0.8693000078201294
-Best Model based on F1-Score: model_111 with F1-Score: 0.8716196426828078
-Best Model based on Recall: model_26 with Recall: 1.0
-Best Model based on Loss: model_112 with Loss: 0.34404894709587097
-```
 
 It is possible to choose a certain parameter setting without searching for the ideal parameters in a loop; this saves a lot of time.
 
