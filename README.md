@@ -342,6 +342,7 @@ Model model_1: Test Loss: 0.378179132938385, Test Accuracy: 0.845300018787384
 
 313/313 [==============================] - 2s 5ms/step
 Epoch 1/5
+...
 
 ...
 Best Model based on Accuracy: model_78 with Accuracy: 0.8693000078201294
@@ -349,6 +350,47 @@ Best Model based on F1-Score: model_111 with F1-Score: 0.8716196426828078
 Best Model based on Recall: model_26 with Recall: 1.0
 Best Model based on Loss: model_112 with Loss: 0.34404894709587097
 ```
+
+It is possible to choose a certain parameter setting without searching for the ideal parameters in a loop; this saves a lot of time.
+
+In addition to the default model with LSTM layer, we also build three different models: 
+- [**the Bidirectional Layer LSTM**](https://medium.com/@anishnama20/understanding-bidirectional-lstm-for-sequential-data-processing-b83d6283befc): it consists of two LSTM layers: one processes the input sequence in the forward direction, and the other processes it in the backward direction. This allows the network to capture information from both past and future states, providing a more comprehensive understanding of the sequence.
+
+...python
+# Create the model
+model = Sequential()
+model.add(Embedding(total_words, embed_dim, input_length=max_length))
+model.add(Bidirectional(LSTM(lstm_out)))
+model.add(Dense(1, activation=activation))
+model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
+...
+                        
+- [**the Dropout Layer**](https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/): to prevent overfitting and improve generalization. When used with LSTM networks, the Dropout layer randomly sets a fraction of the input units to zero during each update cycle while training the model, which helps the network to learn more robust features and prevents the model from relying too heavily on specific neurons.
+
+...python
+# Create the model
+model = Sequential()
+model.add(Embedding(total_words, embed_dim, input_length=max_length))
+model.add(LSTM(lstm_out))
+model.add(Dropout(0.2)) # Dropout layer con un dropout rate di 0.2
+model.add(Dense(1, activation=activation))
+model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
+...
+
+- [**Multi-layer or Stacked LSTM**](https://machinelearningmastery.com/stacked-long-short-term-memory-networks/): using multiple layers of Long Short-Term Memory (LSTM) units, known as a multi-layer or stacked LSTM, enhances the learning capability of the network.
+
+...python
+# Create the model
+model = Sequential()
+model.add(Embedding(total_words, embed_dim, input_length=max_length))
+model.add(LSTM(lstm_out, return_sequences=True))
+model.add(LSTM(lstm_out))
+model.add(Dropout(0.2)) # Dropout layer con un dropout rate di 0.2
+model.add(Dense(1, activation=activation))
+model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
+...
+
+
 
 
 
