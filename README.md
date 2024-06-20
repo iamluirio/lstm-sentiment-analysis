@@ -323,6 +323,23 @@ model.add(Dense(1, activation=activation))
 model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
 ```
 
+## Plotting Results and Evaluation Metrics
+Let's now compare the best models for each architecture. As an evaluation metric, we rely on **accuracy**, but we can decide to use other measures as well.
+
+| Model Name | Accuracy | F1-Score  | Recall   | Loss     |
+|------------|----------|-----------|----------|----------|
+| Model 1    | 0.8747   | 0.880973  | 0.920222 | 0.333019 |
+| Model 2    | 0.8691   | 0.867925  | 0.853542 | 0.710201 |
+| Model 3    | 0.8697   | 0.871991  | 0.880730 | 0.333225 |
+| Model 4    | 0.8675   | 0.874396  | 0.915261 | 0.543763 |
+
+![image](https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/62589a3c-a5c3-4e41-a60a-f4b2fa532baf)
+
+![image](https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/953548bb-5619-4d69-a5c9-92f42b2d3df5)
+
+![image](https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/8e069ac2-1f3f-4a25-97f1-9f3227488042)
+
+
 
 
 
