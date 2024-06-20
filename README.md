@@ -1,5 +1,13 @@
 # Sentiment Analysis task study on IMDB Reviews dataset
 
+<div align="left">
+  <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
+  <img src="https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white" />
+<img src="https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=Keras&logoColor=white" />
+  <img src="https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" />
+  <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white" />
+<div/>
+
 The IMDB dataset is a comprehensive collection of data related to movies, TV shows, and other entertainment media, curated by the Internet Movie Database (IMDb). It includes a wide range of information about these media, such as titles (names of movies, TV shows, and episodes), ratings, summaries, etc.
 
 The IMDb dataset is often used in data analysis and machine learning projects due to its rich and detailed information. Researchers and developers use it for tasks, like **Sentiment Analysis**, that is **analyzing user reviews to determine the overall sentiment**. This is exactly what we are going to do in this project using neural approaches, exploiting the **LSTM neural network**.
