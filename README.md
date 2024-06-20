@@ -189,7 +189,6 @@ Maximum review length:  130
 
 We build different model based on **different learning rates, epochs, batch sizes, different activation functions, different number of neurons and embedding space**:
 
-<div align="center">
 | Parameter                | Values                                    |
 |--------------------------|-------------------------------------------|
 | Learning Rates           | 0.001, 0.01, 0.1                          |
@@ -198,7 +197,6 @@ We build different model based on **different learning rates, epochs, batch size
 | Activation Functions     | sigmoid, relu, tanh                       |
 | Neurons in Output Layer  | 64, 128                                   |
 | Vector Space Dimension   | 32, 64                                    |
-</div>
 
 **We built a total of 144 models for each architecture, for a total of 576 models**. By running **METTI NOME FILE**, all the models will be produced: this takes a long time, even using the gpu instead of the cpu. I personally, using an NVIDIA graphics card, even with just the first model it took around an hour and a half.
 
