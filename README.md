@@ -274,8 +274,10 @@ After iterating through all hyperparameter combinations, we finally print the be
 
 It is possible to choose a certain parameter setting without searching for the ideal parameters in a loop; this saves a lot of time.
 
-In addition to the default model with LSTM layer, we also build three different models: 
-- [**the Bidirectional Layer LSTM**](https://medium.com/@anishnama20/understanding-bidirectional-lstm-for-sequential-data-processing-b83d6283befc): it consists of two LSTM layers: one processes the input sequence in the forward direction, and the other processes it in the backward direction. This allows the network to capture information from both past and future states, providing a more comprehensive understanding of the sequence.
+In addition to the default model with LSTM layer, we also build three different models explained below.
+
+### [**the Bidirectional Layer LSTM**](https://medium.com/@anishnama20/understanding-bidirectional-lstm-for-sequential-data-processing-b83d6283befc)
+It consists of two LSTM layers: one processes the input sequence in the forward direction, and the other processes it in the backward direction. This allows the network to capture information from both past and future states, providing a more comprehensive understanding of the sequence.
 
 ...python
 # Create the model
@@ -286,7 +288,8 @@ model.add(Dense(1, activation=activation))
 model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
 ...
                         
-- [**the Dropout Layer**](https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/): to prevent overfitting and improve generalization. When used with LSTM networks, the Dropout layer randomly sets a fraction of the input units to zero during each update cycle while training the model, which helps the network to learn more robust features and prevents the model from relying too heavily on specific neurons.
+### [**the Dropout Layer**](https://machinelearningmastery.com/use-dropout-lstm-networks-time-series-forecasting/) 
+To prevent overfitting and improve generalization. When used with LSTM networks, the Dropout layer randomly sets a fraction of the input units to zero during each update cycle while training the model, which helps the network to learn more robust features and prevents the model from relying too heavily on specific neurons.
 
 ...python
 # Create the model
@@ -298,7 +301,8 @@ model.add(Dense(1, activation=activation))
 model.compile(optimizer=tf.keras.optimizers.legacy.Adam(learning_rate=lr), loss='binary_crossentropy', metrics=['accuracy'])
 ...
 
-- [**Multi-layer or Stacked LSTM**](https://machinelearningmastery.com/stacked-long-short-term-memory-networks/): using multiple layers of Long Short-Term Memory (LSTM) units, known as a multi-layer or stacked LSTM, enhances the learning capability of the network.
+### [**Multi-layer or Stacked LSTM**](https://machinelearningmastery.com/stacked-long-short-term-memory-networks/)
+Using multiple layers of Long Short-Term Memory (LSTM) units, known as a multi-layer or stacked LSTM, enhances the learning capability of the network.
 
 ...python
 # Create the model
