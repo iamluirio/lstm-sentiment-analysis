@@ -203,6 +203,9 @@ We build different model based on **different learning rates, epochs, batch size
 Below I show you an example of model construction, without reporting them all so that you can replicate the example quickly, choosing the parameters as input.
 
 ### First Model: Default LSTM Layer
+We use nested loops to iterate over all combinations of the defined hyperparameters. 
+
+For each combination of hyperparameters, we constructs a new Sequential LSTM model with the current set of hyperparameters. We compile the model using the Adam optimizer and binary cross-entropy loss, and we define a model checkpoint callback to save the best model based on validation accuracy.
 
 ```python
 # Define hyperparameters
@@ -247,6 +250,11 @@ for embed_dim in EMBED_DIM:
 
                         # Define model name
                         model_name = f'model_{model_counter}'
+```
+
+Then, we proceed training the model on the training data, validating on the validation data, and evaluating the trained model on the test set to get the loss and accuracy. 
+
+```python
 
                         # Define the checkpoint callback to save the best model
                         checkpoint = ModelCheckpoint(f'models/firstModel/{model_name}.h5',
@@ -264,7 +272,11 @@ for embed_dim in EMBED_DIM:
                         # Evaluate the model on the test set
                         loss, accuracy = model.evaluate(x_test, y_test)
                         print(f'Model {model_name}: Test Loss: {loss}, Test Accuracy: {accuracy}\n')
+```
 
+The final step is the evaluation: we evaluate the model’s performance on the test set predicting labels for the test set and calculates F1-score and recall. We compare the current model's performance with previously recorded best metrics and updates the best model if the current model performs better.
+
+```python
                         # Check if the current model has better accuracy than the previous best accuracy model
                         if accuracy > best_accuracy:
                             best_accuracy = accuracy
@@ -290,7 +302,10 @@ for embed_dim in EMBED_DIM:
                         if loss < best_loss:
                             best_loss = loss
                             best_loss_model_name = model_name
+```
 
+
+```python
 # Print the best models based on different metrics
 print("========================================================================================")
 print(f'Best Model based on Accuracy: {best_accuracy_model_name} with Accuracy: {best_accuracy}')
@@ -298,6 +313,8 @@ print(f'Best Model based on F1-Score: {best_f1_score_model_name} with F1-Score: 
 print(f'Best Model based on Recall: {best_recall_model_name} with Recall: {best_recall}')
 print(f'Best Model based on Loss: {best_loss_model_name} with Loss: {best_loss}')
 ```
+
+After iterating through all hyperparameter combinations, we finally print the best models based on accuracy, F1-score, recall, and loss.
 
 ```
 Epoch 1/5
@@ -325,6 +342,7 @@ Model model_1: Test Loss: 0.378179132938385, Test Accuracy: 0.845300018787384
 
 313/313 [==============================] - 2s 5ms/step
 Epoch 1/5
+
 ...
 Best Model based on Accuracy: model_78 with Accuracy: 0.8693000078201294
 Best Model based on F1-Score: model_111 with F1-Score: 0.8716196426828078
@@ -332,11 +350,11 @@ Best Model based on Recall: model_26 with Recall: 1.0
 Best Model based on Loss: model_112 with Loss: 0.34404894709587097
 ```
 
-We use nested loops to iterate over all combinations of the defined hyperparameters. For each combination of hyperparameters, we constructs a new Sequential LSTM model with the current set of hyperparameters. We compile the model using the Adam optimizer and binary cross-entropy loss, and we define a model checkpoint callback to save the best model based on validation accuracy.
 
-Then, we proceed training the model on the training data, validating on the validation data, and evaluating the trained model on the test set to get the loss and accuracy.
 
-The final stemp is the evaluation: we evaluate the model’s performance on the test set predicting labels for the test set and calculates F1-score and recall. We compare the current model's performance with previously recorded best metrics and updates the best model if the current model performs better.
 
-After iterating through all hyperparameter combinations, we finally print the best models based on accuracy, F1-score, recall, and loss.
+
+
+
+
 
