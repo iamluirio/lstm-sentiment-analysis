@@ -361,14 +361,63 @@ For a binary classification problem, the confusion matrix is a 2x2 table with th
 </div>
 <div style="margin-bottom: 20px;">‎ </div>
 
+## Using models for Forecasting
+We use one of the models to predict whether, given a review of a movie, it predicts whether it is positive or negative.
 
+```python
+def modelTest(reviews):
+    preprocessed_reviews = [preprocess_text(review) for review in reviews]
 
+    results = []
+    for review in preprocessed_reviews:
+        result = model_1.predict(review)
+        results.append(result)
 
+    return results
+```
 
+If the confidence score is close to 0, the statement is negative. On the other hand, if it is close to 1, the statement is positive. We use a threshold of 0.7 to determine which confidence score is positive and negative, so if it is equal to or greater than 0.7, it is positive and if it is less than 0.7, it is negative.
 
+```python
+positive_reviews = ['This movie was an absolute delight from start to finish. The acting was superb, the storyline was engaging, and the cinematography was stunning. Highly recommended!',
+        'I was blown away by this film. The performances were outstanding, especially the lead actor who delivered a powerful and emotionally charged portrayal. The direction was flawless, creating a captivating and thought-provoking experience.',
+        'What a gem of a movie! It had me hooked from the opening scene till the very end. The writing was witty, the humor was spot-on, and the characters were lovable. A truly enjoyable cinematic experience.',
+        'I cannot praise this movie enough. It had everything I could ask for - action, suspense, and a gripping storyline. The visual effects were top-notch, and the performances were exceptional. A must-see!',
+        'This film is a masterpiece. The storytelling was mesmerizing, with every scene carefully crafted to evoke a range of emotions. The themes explored were deep and thought-provoking, leaving a lasting impact.'
+        ]
 
+negative_reviews = ["What a disappointment. This movie was a complete waste of time. The plot was predictable, the acting was wooden, and the dialogue felt forced. I couldn't wait for it to be over.",
+        'I had high hopes for this film, but it fell flat. The story lacked originality and failed to engage me. The pacing was off, and the characters were poorly developed. Overall, a forgettable experience.',
+        "I'm sorry, but this movie was just terrible. The acting was cringe-worthy, the dialogue was cheesy, and the special effects were laughable. I couldn't find any redeeming qualities in this mess.",
+        'I was bored to tears watching this film. The pacing was sluggish, the plot was convoluted, and the characters were uninteresting. It felt like a complete waste of talented actors and resources.',
+        "Save yourself the agony and skip this movie. It was poorly directed, poorly acted, and had a nonsensical storyline. I've never been so disappointed in a film before."
+]
 
+positive_results = modelTest(positive_reviews)
+negative_results = modelTest(negative_reviews)
 
+for i, (review, result) in enumerate(zip(positive_reviews, positive_results), 1):
+    review_label = f"Positive Review {i}"
+    print(review_label, ":")
+    print("Result:", result)
+
+    if result >= 0.7:
+        print("This is a positive review.")
+    else:
+        print("This is a negative review.")
+
+    print()
+```
+
+```
+Positive Review 1 :
+Result: [[0.97039515]]
+This is a positive review.
+
+Positive Review 2 :
+Result: [[0.97847974]]
+This is a positive review.
+```
 
 
 
