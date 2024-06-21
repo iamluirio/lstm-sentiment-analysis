@@ -346,7 +346,7 @@ A [**Receiver Operating Characteristic (ROC) curve**](https://it.wikipedia.org/w
 </div>
 
 ### Confusion Matrix
-A *[*confusion matrix**](https://en.wikipedia.org/wiki/Confusion_matrix) is a performance measurement tool for classification models, particularly useful for binary and multiclass classification problems. It provides a tabular summary of the predictions made by a model compared to the actual outcomes, allowing for a more detailed analysis of how well the model is performing.
+A [**confusion matrix**](https://en.wikipedia.org/wiki/Confusion_matrix) is a performance measurement tool for classification models, particularly useful for binary and multiclass classification problems. It provides a tabular summary of the predictions made by a model compared to the actual outcomes, allowing for a more detailed analysis of how well the model is performing.
 
 For a binary classification problem, the confusion matrix is a 2x2 table with the following structure:
 
