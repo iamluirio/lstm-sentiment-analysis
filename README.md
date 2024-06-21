@@ -337,6 +337,9 @@ Let's now compare the best models for each architecture. As an evaluation metric
 <div align="center">
    <img src="https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/62589a3c-a5c3-4e41-a60a-f4b2fa532baf" />
 </div>
+
+### ROC Curve
+A [**Receiver Operating Characteristic (ROC) curve**](https://it.wikipedia.org/wiki/Receiver_operating_characteristic) is a graphical representation of the performance of a binary classification model. It illustrates the trade-off between the true positive rate (TPR) and the false positive rate (FPR) across different threshold values. The **area Under the Curve (AUC)** is a single scalar value summarizing the performance of the model. An AUC of 1 indicates a perfect model, while an AUC of 0.5 indicates a model no better than random guessing.
 <div style="margin-bottom: 20px;">‎ </div>
 <div align="center">
   <img src="https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/953548bb-5619-4d69-a5c9-92f42b2d3df5" />
