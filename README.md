@@ -333,11 +333,19 @@ Let's now compare the best models for each architecture. As an evaluation metric
 | Model 3    | 0.8697   | 0.871991  | 0.880730 | 0.333225 |
 | Model 4    | 0.8675   | 0.874396  | 0.915261 | 0.543763 |
 
+<div style="margin-bottom: 20px;">‎ </div>
+<div align="center">
 ![image](https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/62589a3c-a5c3-4e41-a60a-f4b2fa532baf)
-
+</div>
+<div style="margin-bottom: 20px;">‎ </div>
+<div align="center">
 ![image](https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/953548bb-5619-4d69-a5c9-92f42b2d3df5)
-
+</div>
+<div style="margin-bottom: 20px;">‎ </div>
+<div align="center">
 ![image](https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/8e069ac2-1f3f-4a25-97f1-9f3227488042)
+</div>
+<div style="margin-bottom: 20px;">‎ </div>
 
 
 
