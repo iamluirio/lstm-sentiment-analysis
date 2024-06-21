@@ -344,6 +344,17 @@ A [**Receiver Operating Characteristic (ROC) curve**](https://it.wikipedia.org/w
 <div align="center">
   <img src="https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/953548bb-5619-4d69-a5c9-92f42b2d3df5" />
 </div>
+
+### Confusion Matrix
+A *[*confusion matrix**](https://en.wikipedia.org/wiki/Confusion_matrix) is a performance measurement tool for classification models, particularly useful for binary and multiclass classification problems. It provides a tabular summary of the predictions made by a model compared to the actual outcomes, allowing for a more detailed analysis of how well the model is performing.
+
+For a binary classification problem, the confusion matrix is a 2x2 table with the following structure:
+
+|               | Predicted Positive | Predicted Negative |
+|---------------|--------------------|--------------------|
+| Actual Positive | True Positive (TP) | False Negative (FN) |
+| Actual Negative | False Positive (FP) | True Negative (TN) |
+
 <div style="margin-bottom: 20px;">‎ </div>
 <div align="center">
   <img src="https://github.com/iamluirio/lstm-sentiment-analysis/assets/118205581/8e069ac2-1f3f-4a25-97f1-9f3227488042" />
